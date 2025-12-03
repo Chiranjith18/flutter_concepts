@@ -7,3 +7,7 @@
                 borderRadius: BorderRadius.circular(25.0),
                 color:Colors.red,
               )
+5. body: Image.network("image_url",
+        height: double.infinity,
+        fit:BoxFit.cover,
+      )
