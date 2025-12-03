@@ -11,3 +11,7 @@
         height: double.infinity,
         fit:BoxFit.cover,
       )
+body:Image.asset('assets/images/god-of-high-school-jin-mori-han-daewi-yoo-mira-uhdpaper.com-4K-5.2296.jpg',
+height: double.infinity,
+        fit:BoxFit.cover,
+      ),
