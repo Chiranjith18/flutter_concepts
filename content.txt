@@ -1,0 +1,9 @@
+1.mainAxisAlignment
+2.crossAxisAlignment
+3. child:Center(
+                child:Text("helof")
+              )
+4.decoration:BoxDecoration(
+                borderRadius: BorderRadius.circular(25.0),
+                color:Colors.red,
+              )
