@@ -15,3 +15,16 @@ body:Image.asset('assets/images/god-of-high-school-jin-mori-han-daewi-yoo-mira-u
 height: double.infinity,
         fit:BoxFit.cover,
       ),
+
+6.
+ body:Stack(
+          children: [
+            Image.asset("assets/images/god-of-high-school-jin-mori-han-daewi-yoo-mira-uhdpaper.com-4K-5.2296.jpg",
+            fit:BoxFit.cover,
+              height:300,
+                  ),
+            SizedBox(
+                height:300,
+                child: Center(child: Text('Hi',style: TextStyle(color: Colors.blueAccent),))),
+          ],
+        )
