@@ -28,3 +28,14 @@ height: double.infinity,
                 child: Center(child: Text('Hi',style: TextStyle(color: Colors.blueAccent),))),
           ],
         )
+7.
+ appBar: AppBar(
+
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
+        title: Text(widget.title),
+        leading:Icon(Icons.notification_add,
+          color:Colors.amber
+
+        )
+      ),
