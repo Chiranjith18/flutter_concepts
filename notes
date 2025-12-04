@@ -1,0 +1,3 @@
+1.Card
+2. FittedBox wraps content properly and makes it all come in one line
+FittedBox(child: Text('Flutter map',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 500.0,letterSpacing: 50.0),)),
