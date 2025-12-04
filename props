@@ -1,0 +1,203 @@
+1child:
+import 'package:flutter/material.dart';
+class SettingsPage extends StatefulWidget{
+  final String title;
+  const SettingsPage({
+    super.key,
+    required this.title,
+});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+
+TextEditingController controller = TextEditingController();
+bool? isChecked = false;
+bool switched = false;
+double sliderval = 0.0;
+String? menuItem;
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        leading:BackButton(onPressed: () {
+          Navigator.pop(context); //creating the button to comeback by myself
+        },),
+
+        automaticallyImplyLeading: false,
+      ),
+      body:
+       SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DropdownButton(value: menuItem,
+                items: [
+                DropdownMenuItem(value:'e1',child: Text('Element 1')),
+                DropdownMenuItem(value:'e2',child: Text('Element 2')),
+              ], onChanged: (String? value) {
+                setState(() {
+                  menuItem = value;
+                });
+
+              },),
+              TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+             onEditingComplete: (){
+                  setState(() {
+
+                  });
+             },
+              ),
+        Text(controller.text,style: TextStyle(color: Colors.green),),
+              Checkbox(
+                tristate: true,
+                value: isChecked, onChanged:(bool? value) {
+                setState(() {
+                  isChecked = value;
+                });
+              },),
+              CheckboxListTile(
+                tristate: true,
+                  title: Text('click me'),
+                  value: isChecked, onChanged: (bool? value) {
+
+                setState(() {
+                  isChecked = value;
+                });
+              }
+                ),
+              Slider.adaptive(
+                  max:10.0,
+                  divisions: 10,
+                  value: sliderval,
+                  onChanged: (double val){
+                setState(() {
+                  sliderval = val;
+                });
+                print(sliderval);
+              }),
+              Switch.adaptive(value: switched,
+                  onChanged: (bool value){
+                   setState(() {
+                     switched = value;
+                   });
+                  }
+              ),
+              SwitchListTile.adaptive(
+                  title:  Text('damn'),
+                  value: switched, onChanged: (bool value){
+          setState(() {
+            switched = value;
+          });
+        }),
+             /* GestureDetector(
+                onTap: (){
+                  print('Image Selected');
+                },
+                child:Image.asset("assets/images/god-of-high-school-jin-mori-han-daewi-yoo-mira-uhdpaper.com-4K-5.2296.jpg"),
+
+              ),*/
+
+
+
+              InkWell(
+                splashColor: Colors.teal,
+                onTap: (){
+                  print('Image Selected');
+                },
+                child:Container(
+                  height: 50,
+                  width:double.infinity,
+                  color: Colors.white12,
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.teal,foregroundColor: Colors.white),
+                  child: Text('click me'),
+              ),
+             FilledButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+              OutlinedButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+              CloseButton(
+                onPressed: () {},
+              ),
+              BackButton(
+              )
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+2.parent
+import 'package:flutter/material.dart';
+import 'package:learn/data/notifiers.dart';
+import 'package:learn/views/pages/home_page.dart';
+import 'package:learn/views/pages/profile_page.dart';
+import 'package:learn/views/pages/settings_page.dart';
+import '../../widgets/navbar_widget.dart';
+
+List<Widget>pages = [HomePage(),ProfilePage()];
+class WidgetTree extends StatelessWidget{
+  const WidgetTree({super.key});
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter'),
+        centerTitle: true,
+        actions: [ValueListenableBuilder(valueListenable: mode,
+          builder: (context, value, child) {
+            return IconButton(onPressed: (){
+             mode.value = !mode.value;},
+                icon: ValueListenableBuilder(
+              valueListenable: mode,
+              builder: (context, value, child) {
+                return Icon(
+                  (value==true)?Icons.dark_mode:Icons.light_mode,
+                );
+              }
+            ));
+          }
+        ),
+        IconButton(onPressed: (){
+          Navigator.push(context,MaterialPageRoute(
+            builder: (context) {
+              return SettingsPage(title: 'settings',);
+            },
+          ),
+          );
+        }, icon: Icon(Icons.settings))
+        ],),
+      body: ValueListenableBuilder(valueListenable: selectedPageNotifier, builder: (context, selectedpage, child) {
+        return pages.elementAt(selectedpage);
+      },),
+      bottomNavigationBar: NavBarWidget(),
+    );
+  }
+}
+
+
+
