@@ -1,0 +1,10 @@
+IconButton(onPressed: (){
+          Navigator.pushReplacement(context,MaterialPageRoute(
+            builder: (context) {
+              return SettingsPage();
+            },
+          ),
+          );
+        }, icon: Icon(Icons.settings))
+
+        replaces the precvious page with current so fluter doesnt add a back button
