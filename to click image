@@ -1,0 +1,21 @@
+1.GestureDetector(
+              onTap: (){
+                print('Image Selected');
+              },
+              child:Image.asset("assets/images/god-of-high-school-jin-mori-han-daewi-yoo-mira-uhdpaper.com-4K-5.2296.jpg"),
+
+            )
+2.InkWell(
+              splashColor: Colors.teal,
+              onTap: (){
+                print('Image Selected');
+              },
+              child:Container(
+                height: 200,
+                width:double.infinity,
+                color: Colors.white12,
+              ),
+
+            )
+
+use inkwell for splash effect while clicking and doesnt work on images
