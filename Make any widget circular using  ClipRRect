@@ -1,0 +1,4 @@
+ ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child:Image.asset("assets/images/god-of-high-school-jin-mori-han-daewi-yoo-mira-uhdpaper.com-4K-5.2296.jpg"),
+          ),
