@@ -9,3 +9,148 @@ IconButton(onPressed: (){
 
 the page being pushed here the SettingsPage must be imported and must be a skeltopn meaning scaffold so take
 your column or whatever widget it was returing cut it and return a scaffold and paste the code  in the  scaffolds body
+
+import 'package:flutter/material.dart';
+class SettingsPage extends StatefulWidget{
+  const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+
+TextEditingController controller = TextEditingController();
+bool? isChecked = false;
+bool switched = false;
+double sliderval = 0.0;
+String? menuItem;
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings'),
+        automaticallyImplyLeading: false, //only if u give this flutter wont add a comeback button by itlsef
+      ),
+      body:
+       SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DropdownButton(value: menuItem,
+                items: [
+                DropdownMenuItem(value:'e1',child: Text('Element 1')),
+                DropdownMenuItem(value:'e2',child: Text('Element 2')),
+              ], onChanged: (String? value) {
+                setState(() {
+                  menuItem = value;
+                });
+
+              },),
+              TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+             onEditingComplete: (){
+                  setState(() {
+
+                  });
+             },
+              ),
+        Text(controller.text,style: TextStyle(color: Colors.green),),
+              Checkbox(
+                tristate: true,
+                value: isChecked, onChanged:(bool? value) {
+                setState(() {
+                  isChecked = value;
+                });
+              },),
+              CheckboxListTile(
+                tristate: true,
+                  title: Text('click me'),
+                  value: isChecked, onChanged: (bool? value) {
+
+                setState(() {
+                  isChecked = value;
+                });
+              }
+                ),
+              Slider.adaptive(
+                  max:10.0,
+                  divisions: 10,
+                  value: sliderval,
+                  onChanged: (double val){
+                setState(() {
+                  sliderval = val;
+                });
+                print(sliderval);
+              }),
+              Switch.adaptive(value: switched,
+                  onChanged: (bool value){
+                   setState(() {
+                     switched = value;
+                   });
+                  }
+              ),
+              SwitchListTile.adaptive(
+                  title:  Text('damn'),
+                  value: switched, onChanged: (bool value){
+          setState(() {
+            switched = value;
+          });
+        }),
+             /* GestureDetector(
+                onTap: (){
+                  print('Image Selected');
+                },
+                child:Image.asset("assets/images/god-of-high-school-jin-mori-han-daewi-yoo-mira-uhdpaper.com-4K-5.2296.jpg"),
+
+              ),*/
+
+
+
+              InkWell(
+                splashColor: Colors.teal,
+                onTap: (){
+                  print('Image Selected');
+                },
+                child:Container(
+                  height: 50,
+                  width:double.infinity,
+                  color: Colors.white12,
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.teal,foregroundColor: Colors.white),
+                  child: Text('click me'),
+              ),
+             FilledButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+              OutlinedButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+              CloseButton(
+                onPressed: () {},
+              ),
+              BackButton(
+              )
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
