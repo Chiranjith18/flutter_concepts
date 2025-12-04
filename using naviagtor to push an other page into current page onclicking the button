@@ -1,0 +1,11 @@
+IconButton(onPressed: (){
+          Navigator.push(context,MaterialPageRoute(
+            builder: (context) {
+              return SettingsPage();
+            },
+          ),
+          );
+        }, icon: Icon(Icons.settings))
+
+the page being pushed here the SettingsPage must be imported and must be a skeltopn meaning scaffold so take
+your column or whatever widget it was returing cut it and return a scaffold and paste the code  in the  scaffolds body
